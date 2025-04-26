@@ -38,9 +38,14 @@
 
 
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // MongoDB URL
-const mongourl = "mongodb://localhost:27017/Backend";
+// const mongourl = process.env.LOCAL_URL;
+
+const Atlas_URL=process.env.DB_URL;
+
+const mongourl=Atlas_URL;
 
 // Connect to MongoDB (no need for deprecated options)
 mongoose.connect(mongourl);

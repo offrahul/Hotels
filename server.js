@@ -3,14 +3,25 @@ const mongoose=require("mongoose");
 const app = express()
 
 const db=require("./db");
+require("dotenv").config();
 const MenuItem=require("./models/menuItem");
 
 const Person=require("./models/person");
 const bodyParser=require("body-parser");
 app.use(bodyParser.json())
+const port=process.env.PORT || 3000;
+
+
+
+
 app.get('/', (req, res) => {
   res.send('Hello hotel')
 })
+
+const personRoute=require("./routes/personRoutes");
+const menuRoute=require("./routes/menuItem");
+app.use("/person",personRoute)
+app.use("/menu",menuRoute)
 
 
 // app.get("/idl",(req,res)=>{
@@ -72,23 +83,20 @@ app.get('/', (req, res) => {
 
 
 
-app.delete("/menu",(req,res)=>{
+// app.delete("/menu",(req,res)=>{
 
-})
-app.put("/menu",(req,res)=>{
+// })
+// app.put("/menu",(req,res)=>{
 
-})
-
-
-
-
-const personRoute=require("./routes/personRoutes");
-const menuRoute=require("./routes/menuItem");
-app.use("/person",personRoute)
-app.use("/menu",menuRoute)
+// })
 
 
 
-app.listen(3000,()=>{
+
+
+
+
+
+app.listen(port,()=>{
   console.log("listening on server 3000")
 })
